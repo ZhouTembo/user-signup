@@ -24,7 +24,8 @@ def display_time_form():
     email=request.form['email']
     user_name=request.form['username']
     home=''
-    print (user_name)
+    
+    
     
     if len(password)<4 and password!=vpassword and '@' not in email or '.' not in email and email>'':
         passworderror='Not a valid password'
@@ -53,13 +54,13 @@ def display_time_form():
     if email>'':
         if '@' not in email or '.' not in email:
             email_error="That's not a valid email"
-            return render_template('main_form.html',home=user_name,book=email,email_error=email_error)
+            return render_template('main_form.html',home='user_name',book=email,email_error=email_error)
         else:
         
-            return '<h1>Hello, Mia'  '</h1>'
+            return '<h1>Hello, '+user_name+  '</h1>'
     else:
         
-        return '<h1>Hello, Mia'  '</h1>'
+        return '<h1>Hello, ' +user_name+ '</h1>'
 
 
 
