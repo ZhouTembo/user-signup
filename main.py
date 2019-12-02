@@ -1,37 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
+
+
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-form = """
-<!doctype html>
-<html>
-    <body>
-    <style>
-        .error {{ color: purple; }}
-    </style>
-    <h1>Signup</h1>
-        <form action="/validate-form" method="post">
-            <label for="username">Username</label>
-            <input id="username" type="text" name="user_name" />
-            
-            <br><label for="password">Password</label>
-            <input id="password" type="password" name="password" />
-            
-           <br><label for="vpassword">Verify Password</label>
-            <input id="vpassword" type="password" name="vpassword" />
-            <span class="error">{password_error}</span>
-           <br><label for="email">Email (optional)</label>
-            <input id="email" type="email" name="email" />
-           
-            <br><input type="submit" />
-        </form>
-    </body>
-</html>
-"""
+
 @app.route("/")
 def index():
-    return form.format(password_error='')
+    return render_template('main_form.html')
 
 
 
@@ -49,7 +27,7 @@ def display_time_form():
         password_error = 'Passwords do not match'
         password=""
         vpassword=""
-        return form.format(password_error=password_error,
+        return render_template('main_form.html',password_error=password_error,
             password=password,
             vpassword=vpassword)
         
